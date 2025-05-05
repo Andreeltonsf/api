@@ -8,7 +8,7 @@ class Env {
 
   @IsString()
   @IsNotEmpty()
-  @NotEquals('unsecure')
+  @NotEquals('unsecure_jwt_secret')
   jwtSecret: string;
 }
 
@@ -17,12 +17,8 @@ export const env: Env = plainToInstance(Env, {
   dbUrl: process.env.DATABASE_URL,
 });
 
-validateSync(env);
-
 const errors = validateSync(env);
 
 if (errors.length > 0) {
-  throw new Error(
-    `Environment variables validation error: ${JSON.stringify(errors, null, 2)}`,
-  );
+  throw new Error(JSON.stringify(errors, null, 2));
 }

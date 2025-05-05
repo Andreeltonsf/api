@@ -4,6 +4,7 @@ import { UsersService } from './users.service';
 
 @Global()
 @Module({
+  imports: [],
   controllers: [UsersController],
   providers: [UsersService],
 })
