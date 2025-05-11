@@ -19,7 +19,7 @@ export class AuthService {
   async signin(signinDto: SignInDto) {
     const { email, password } = signinDto;
 
-    const user = await this.usersRepo.findByEmail({ where: { email } });
+    const user = await this.usersRepo.findUnique({ where: { email } });
 
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
@@ -42,7 +42,7 @@ export class AuthService {
   async signup(signupDto: SignupDto) {
     const { name, email, password } = signupDto;
 
-    const emailTaken = await this.usersRepo.findByEmail({
+    const emailTaken = await this.usersRepo.findUnique({
       where: {
         email,
       },

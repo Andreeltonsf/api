@@ -7,8 +7,6 @@ export class UsersController {
 
   @Get('/me')
   me(@Req() request: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    console.log({ meUserId: request.userId });
-    return this.usersService.getUserByID('userId');
+    return this.usersService.getUserByID(request.userId);
   }
 }
